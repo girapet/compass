@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <script>
+    if (new URL(document.location.href).hostname !== 'localhost' && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Orientation</title>
+</head>
+<body>
+  <video autoplay></video>
+  <canvas></canvas>
+  <div id="init">
+  </div>
+</body>
+<script src="js/boot.js" type="module"></script>
+</html>

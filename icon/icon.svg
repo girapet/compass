@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="lucide lucide-compass-icon lucide-compass">
+  <rect width="24" height="24" fill="#40a080"></rect>
+  <g transform="translate(0.7,0.7) scale(0.94)" fill="none" stroke="#003020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/>
+  </g>
+</svg>
