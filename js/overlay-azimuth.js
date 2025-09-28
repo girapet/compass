@@ -22,8 +22,8 @@ for (let lon = 0; lon < 360; lon += 45) {
   baseS45.push(toRectangular([lon, -45]));
 }
 
-const drawAzimuth = (ctx, rotationMatrix, scale) => {
-  const { rectangularToScreen } = createTransformer(ctx, rotationMatrix, scale);
+const drawAzimuth = (ctx, state) => {
+  const { rectangularToScreen } = createTransformer(ctx, state);
 
   const horizon = baseHorizon.map(rectangularToScreen);
   const n45 = baseN45.map(rectangularToScreen);

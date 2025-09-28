@@ -41,8 +41,8 @@ for (let lat = -75; lat <= 75; lat += 15) {
   graticule.push(coordinates);
 }
 
-const drawGraticule = (ctx, rotationMatrix, scale) => {
-  const { rectangularToScreen } = createTransformer(ctx, rotationMatrix, scale);
+const drawGraticule = (ctx, state) => {
+  const { rectangularToScreen } = createTransformer(ctx, state);
 
   ctx.lineWidth = 2;
   ctx.strokeStyle = '#ffffff30';

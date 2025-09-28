@@ -3,8 +3,8 @@ import drawRotatedText from './draw-rotated-text.js';
 
 const { atan2, abs } = Math;
 
-const drawAltitude = (ctx, rotationMatrix, scale) => {
-  const { polarToScreen, screenToPolar } = createTransformer(ctx, rotationMatrix, scale);
+const drawAltitude = (ctx, state) => {
+  const { polarToScreen, screenToPolar } = createTransformer(ctx, state);
 
   const [ longitude ] = screenToPolar([ ctx.canvas.width * 0.5, ctx.canvas.height * 0.5 ]);
   const altitude = [];
