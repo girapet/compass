@@ -1,7 +1,7 @@
-const VERSION = '0.0.2';
+const VERSION = '0.0.3';
 
 const precacheUrls = [
-  '/css/index.css',
+  './css/index.css',
   './icon/icon048.png',
   './icon/icon096.png',
   './icon/icon144.png',
@@ -9,10 +9,10 @@ const precacheUrls = [
   './icon/icon256.png',
   './icon/icon384.png',
   './icon/icon512.png',
-  '/js/boot.js',
-  '/js/dist/index.js',
-  '/index.html',
-  '/'
+  './js/boot.js',
+  './js/dist/index.js',
+  './index.html',
+  './'
 ];
 
 self.addEventListener('install', (event) => {
