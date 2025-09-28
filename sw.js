@@ -1,14 +1,7 @@
-const VERSION = '0.0.3';
+const VERSION = '0.0.4';
 
 const precacheUrls = [
   './css/index.css',
-  './icon/icon048.png',
-  './icon/icon096.png',
-  './icon/icon144.png',
-  './icon/icon192.png',
-  './icon/icon256.png',
-  './icon/icon384.png',
-  './icon/icon512.png',
   './js/boot.js',
   './js/dist/index.js',
   './index.html',
