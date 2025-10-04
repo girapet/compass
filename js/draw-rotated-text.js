@@ -1,9 +1,9 @@
 
-const drawRotatedText = (ctx, text, coord, rotation) => {
+const drawRotatedText = (ctx, text, origin, rotation, offset = [0, 0]) => {
   ctx.save();
-  ctx.translate(...coord);
+  ctx.translate(...origin);
   ctx.rotate(rotation);
-  ctx.fillText(text, 0, 0);
+  ctx.fillText(text, ...offset);
   ctx.restore();
 }
 

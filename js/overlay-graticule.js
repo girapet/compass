@@ -41,8 +41,10 @@ for (let lat = -75; lat <= 75; lat += 15) {
   graticule.push(coordinates);
 }
 
-const drawGraticule = (ctx, state) => {
+const overlayGraticule = (ctx, state) => {
   const { rectangularToScreen } = createTransformer(ctx, state);
+
+  ctx.save();
 
   ctx.lineWidth = 2;
   ctx.strokeStyle = '#ffffff30';
@@ -60,6 +62,8 @@ const drawGraticule = (ctx, state) => {
 
     ctx.stroke();    
   });
+
+  ctx.restore();
 };
 
-export default drawGraticule;
+export default overlayGraticule;

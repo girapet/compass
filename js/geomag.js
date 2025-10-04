@@ -78,6 +78,7 @@ for (let n = 1; n <= maxord; n++) {
       c[n][m - 1] = snorm[m][n] * c[n][m - 1];
       cd[n][m - 1] = snorm[m][n] * cd[n][m - 1];
     }
+
     c[m][n] = snorm[m][n] * c[m][n];
     cd[m][n] = snorm[m][n] * cd[m][n];
   }
@@ -119,8 +120,8 @@ const geomag = (location, date) => {
   const q1 = alt * q;
   const q2 = ((q1 + a2) / (q1 + b2)) * ((q1 + a2) / (q1 + b2));
   const ct = srlat / sqrt(q2 * crlat2 + srlat2);
-  const st = sqrt(1.0 - (ct * ct));
-  const r2 = (alt * alt) + 2.0 * q1 + (a4 - c4 * srlat2) / (q * q);
+  const st = sqrt(1 - (ct * ct));
+  const r2 = (alt * alt) + 2 * q1 + (a4 - c4 * srlat2) / (q * q);
   const r = sqrt(r2);
   const d = sqrt(a2 * crlat2 + b2 * srlat2);
   const ca = (alt + d) / r;
@@ -255,6 +256,7 @@ const geomag = (location, date) => {
   }
 
   return { declination: dec, inclination: dip, intensity: ti, gridVariation: gv };
+  // return { declination: dec, inclination: dip, intensity: ti, gridVariation: gv, bx, by, bz, bh };
 };
 
 export default geomag;

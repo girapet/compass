@@ -8,13 +8,13 @@ const cosSin = (a) => {
   }
 }
 
-const identity = () => [
+export const identity = () => [
   [1, 0, 0],
   [0, 1, 0],
   [0, 0, 1]
 ];
 
-const xRotation = (a) => {
+export const xRotation = (a) => {
   const { cosθ, sinθ } = cosSin(a);
   return [
     [1, 0, 0],
@@ -23,7 +23,7 @@ const xRotation = (a) => {
   ]
 };
 
-const yRotation = (a) => {
+export const yRotation = (a) => {
   const { cosθ, sinθ } = cosSin(a);
   return [
     [cosθ, 0, sinθ],
@@ -32,7 +32,7 @@ const yRotation = (a) => {
   ]
 };
 
-const zRotation = (a) => {
+export const zRotation = (a) => {
   const { cosθ, sinθ } = cosSin(a);
   return [
     [cosθ, -sinθ, 0],
@@ -41,7 +41,7 @@ const zRotation = (a) => {
   ]
 };
 
-const multiply = (...matrices) => {
+export const multiply = (...matrices) => {
   let a = matrices[0];
   let c;
 
@@ -61,7 +61,7 @@ const multiply = (...matrices) => {
   return c;
 }
 
-const vectorMultiply = (m, v) => {
+export const vectorMultiply = (m, v) => {
   const [ x, y, z ] = v;
   const w = [];
 
@@ -72,7 +72,7 @@ const vectorMultiply = (m, v) => {
   return w;
 };
 
-const inverse = (m) => {
+export const inverse = (m) => {
   const [ a, b, c ] = m[0];
   const [ d, e, f ] = m[1];
   const [ g, h, i ] = m[2];

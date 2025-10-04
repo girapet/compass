@@ -1,3 +1,4 @@
+import dom from './dom.js';
 import geomag from './geomag.js';
 
 const getLocation = () => {
@@ -51,7 +52,7 @@ const initialize = async (state) => {
 
   visibilityChangeHandler();
 
-  document.addEventListener('visibilitychange', visibilityChangeHandler);
+  dom.on(document, 'visibilitychange', visibilityChangeHandler);
 }
 
 export default { initialize };

@@ -2,8 +2,8 @@
   "name": "Compass",
   "short_name": "Compass",
   "description": "Compass and finder for mobile devices",
-  "start_url": "index.html",
-  "scope": ".",
+  "start_url": "./index.html",
+  "scope": "./",
   "background_color": "#40a080",
   "theme_color": "#003020",
   "display": "standalone",
@@ -50,8 +50,9 @@
   "screenshots": [
     {
       "src": "images/screenshot.jpg",
-      "sizes": "1078x2064",
-      "type": "image/jpeg"
+      "sizes": "539x1032",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
     }
   ]
 }

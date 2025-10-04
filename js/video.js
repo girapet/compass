@@ -1,3 +1,4 @@
+import dom from './dom.js';
 
 const videoOptions = {
   video: { 
@@ -8,7 +9,7 @@ const videoOptions = {
 };
 
 const getVideoStream = async () => {
-  let stream = null;
+  let stream;
 
   try {
     stream = await navigator.mediaDevices.getUserMedia(videoOptions);
@@ -29,28 +30,43 @@ const initialize = async () => {
     return 'Permission to use this device\'s camera was denied';
   }
 
-  const stream = await getVideoStream();
+  let stream = await getVideoStream();
 
   if (!stream) {
     return 'No front-facing camera available';
   }
 
-  const $video = document.querySelector('video');
-  $video.srcObject = stream;
+  const $videoContainer = dom.get('video-container');
+  let $video;
 
   const visibilityChangeHandler = async () => {
     if (document.visibilityState === 'visible') {
-      $video.srcObject = await getVideoStream();
+      if (!$video) {
+        if (!stream) {
+          stream = await getVideoStream();
+        }
+
+        $video = dom.create('video', { 
+          autoplay: true,
+          mute: true
+        });
+        dom.add($videoContainer, $video);
+        $video.srcObject = stream;
+      }
     }
     else {
-      if ($video.srcObject) {
+      if ($video) {
         $video.srcObject.getTracks().forEach((t) => t.stop());
-        $video.srcObject = null;
+        $video.remove();
+        $video = undefined;
+        stream = undefined;
       }
     }
   };
 
-  document.addEventListener('visibilitychange', visibilityChangeHandler);
+  await visibilityChangeHandler();
+
+  dom.on(document, 'visibilitychange', visibilityChangeHandler);
 };
 
 export default { initialize };

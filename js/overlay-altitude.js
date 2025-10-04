@@ -3,18 +3,17 @@ import drawRotatedText from './draw-rotated-text.js';
 
 const { atan2, abs } = Math;
 
-const drawAltitude = (ctx, state) => {
+const overlayAltitude = (ctx, state) => {
   const { polarToScreen, screenToPolar } = createTransformer(ctx, state);
 
   const [ longitude ] = screenToPolar([ ctx.canvas.width * 0.5, ctx.canvas.height * 0.5 ]);
   const altitude = [];
 
-  for (let lat = -89; lat <= 89; lat++) {
+  for (let lat = -90; lat <= 90; lat++) {
     altitude.push(polarToScreen([longitude, lat]));
   }
   
-  ctx.shadowBlur = 5;
-  ctx.shadowColor = '#000000';
+  ctx.save();
 
   ctx.lineWidth = 2;
   ctx.strokeStyle = '#ffffff30';
@@ -29,11 +28,12 @@ const drawAltitude = (ctx, state) => {
 
   ctx.strokeStyle = '#ffffffd0';
   ctx.fillStyle = '#ffffffd0';
+  ctx.shadowBlur = 5;
+  ctx.shadowColor = '#000000';
+
   ctx.font = "bold 16px Arial, Helvetica, sans-serif";
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-
-  altitude.unshift(polarToScreen([longitude, -90]));
 
   for (let lat = -89, i = 1; lat <= 89; lat++, i++) {
     const [ x0, y0 ] = altitude[i];
@@ -56,6 +56,8 @@ const drawAltitude = (ctx, state) => {
       drawRotatedText(ctx, `${abs(lat)}`, tc, rotation);
     }
   }
+
+  ctx.restore();
 };
 
-export default drawAltitude;
+export default overlayAltitude;

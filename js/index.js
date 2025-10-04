@@ -1,13 +1,15 @@
+import dom from './dom.js';
 import video from './video.js';
 import location from './location.js';
 import orientation from './orientation.js';
 import overlay from './overlay.js';
 import wakeLock from './wake-lock.js';
+import markManager from './mark-manager.js';
 
 (async () => {
-  const state = { scale: 1500 };
+  const state = { scale: 1500, marks: [] };
 
-  const $init = document.querySelector('#init');
+  const $init = dom.find('#init')[0];
   $init.style.setProperty('display', 'block');  
 
   // initialize the video from the device's front-facing camera
@@ -50,4 +52,8 @@ import wakeLock from './wake-lock.js';
   // initialize wake lock: keep screen active while in use
 
   wakeLock.initialize();
+
+  // initialize the mark manager
+
+  markManager.initialize(state);
 })();

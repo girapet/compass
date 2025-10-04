@@ -22,12 +22,14 @@ for (let lon = 0; lon < 360; lon += 45) {
   baseS45.push(toRectangular([lon, -45]));
 }
 
-const drawAzimuth = (ctx, state) => {
+const overlayAzimuth = (ctx, state) => {
   const { rectangularToScreen } = createTransformer(ctx, state);
 
   const horizon = baseHorizon.map(rectangularToScreen);
   const n45 = baseN45.map(rectangularToScreen);
   const s45 = baseS45.map(rectangularToScreen);
+
+  ctx.save();
 
   ctx.strokeStyle = '#ffffffd0';
   ctx.fillStyle = '#ffffffd0';
@@ -83,6 +85,8 @@ const drawAzimuth = (ctx, state) => {
       }
     }
   }
+
+  ctx.restore();
 };
 
-export default drawAzimuth;
+export default overlayAzimuth;

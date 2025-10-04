@@ -1,3 +1,4 @@
+import dom from './dom.js';
 
 const initialize = async (state) => {
   const permission = await navigator.permissions.query({ name: 'screen-wake-lock' });
@@ -26,7 +27,7 @@ const initialize = async (state) => {
   
   await visibilityChangeHandler();
 
-  document.addEventListener('visibilitychange', visibilityChangeHandler);
+  dom.on(document, 'visibilitychange', visibilityChangeHandler);
 }
 
 export default { initialize };

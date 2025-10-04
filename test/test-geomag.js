@@ -28,9 +28,13 @@ data.split('\n').forEach((line) => {
   const values = line.replace(/^\s+|\s+$/g, '').split(/\s+/).map((v) => parseFloat(v));
 
   if (values.length && !isNaN(values[0])) {
-    const [ year, alt, lat, lon ] = values;
+    const [ year, altitude, latitude, longitude ] = values;
     const date = toDate(year);
-    const { declination, inclination } = geomag(lat, lon, alt, date);
-    console.log(`${year.toFixed(1)} ${padLeft(alt, 3)} ${padLeft(lat, 4)} ${padLeft(lon, 5)} ${padLeft(declination.toFixed(2), 8)} ${padLeft(inclination.toFixed(2), 8)}`);
+
+    const { declination, inclination } = geomag({ latitude, longitude, altitude }, date);
+    console.log(`${year.toFixed(1)} ${padLeft(altitude, 3)} ${padLeft(latitude, 4)} ${padLeft(longitude, 5)} ${padLeft(declination.toFixed(2), 8)} ${padLeft(inclination.toFixed(2), 8)}`);
+
+    // const { declination, inclination, intensity, bx, by, bz, bh } = geomag({ latitude, longitude, altitude }, date);
+    // console.log(`${year.toFixed(1)} ${padLeft(altitude, 3)} ${padLeft(latitude, 4)} ${padLeft(longitude, 5)} ${padLeft(declination.toFixed(2), 8)} ${padLeft(inclination.toFixed(2), 8)} ${padLeft(bh.toFixed(6), 13)} ${padLeft(bx.toFixed(6), 13)} ${padLeft(by.toFixed(6), 13)} ${padLeft(bz.toFixed(6), 13)} ${padLeft(intensity.toFixed(6), 13)}`);
   }
 });
