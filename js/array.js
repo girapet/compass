@@ -6,11 +6,7 @@ const array = (n, v) => {
   const a = new Array(n);
 
   if (v !== undefined) {
-    const isFunction = v instanceof Function;
-
-    for (let i = 0; i < n; i++) {
-      a[i] = isFunction ? v() : v;
-    }
+    a.fill(v instanceof Function ? v() : v)
   }
 
   return a;

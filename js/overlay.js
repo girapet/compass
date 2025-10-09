@@ -1,7 +1,7 @@
 import overlayGraticule from './overlay-graticule.js';
 import overlayAzimuth from './overlay-azimuth.js';
 import overlayAltitude from './overlay-altitude.js';
-import overlayMarks from './overlay-marks.js';
+import overlayLandmarks from './overlay-landmarks.js';
 import dom from './dom.js';
 
 const FRAMES_PER_SECOND = 30;
@@ -32,7 +32,7 @@ const initialize = (state) => {
       overlayGraticule(ctx, state);
       overlayAltitude(ctx, state);
       overlayAzimuth(ctx, state);
-      overlayMarks(ctx, state);
+      overlayLandmarks(ctx, state);
     }
 
     lastUpdated = now;

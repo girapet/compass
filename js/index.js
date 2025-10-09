@@ -1,13 +1,14 @@
+import environment from './environment.js';
 import dom from './dom.js';
 import video from './video.js';
 import location from './location.js';
 import orientation from './orientation.js';
 import overlay from './overlay.js';
 import wakeLock from './wake-lock.js';
-import markManager from './mark-manager.js';
+import landmarkManager from './landmark-manager.js';
 
 (async () => {
-  const state = { scale: 1500, marks: [] };
+  const state = { scale: 1500 };
 
   const $init = dom.find('#init')[0];
   $init.style.setProperty('display', 'block');  
@@ -43,17 +44,19 @@ import markManager from './mark-manager.js';
     return;
   }
 
-  // initialize the overlay
+  // initialize the landmark manager
+
+  await landmarkManager.initialize(state);
+
+  // initialize the overlays
 
   $init.style.setProperty('display', 'none');
 
   overlay.initialize(state);
   
-  // initialize wake lock: keep screen active while in use
+  // only in development: keep screen active while in use
 
-  wakeLock.initialize();
-
-  // initialize the mark manager
-
-  markManager.initialize(state);
+  if (environment === 'development') {
+    wakeLock.initialize();
+  }
 })();

@@ -1,8 +1,14 @@
-const VERSION = '0.0.5';
+const VERSION = '0.0.6';
 
 const precacheUrls = [
   './css/index.css',
-  './icon/mark.svg',
+  './button/eye-off.svg',
+  './button/eye.svg',
+  './button/list.svg',
+  './button/pencil.svg',
+  './button/settings.svg',
+  './button/square-plus.svg',
+  './button/trash-2.svg',
   './js/boot.js',
   './js/dist/index.js',
   './index.html',

@@ -1,3 +1,4 @@
+import landmarkStore from './landmark-store.js';
 import createTransformer from './create-transformer.js';
 import distanceAzimuth from './distance-azimuth-sphere.js';
 import drawRotatedText from './draw-rotated-text.js';
@@ -5,19 +6,20 @@ import { deg } from './angle.js';
 
 const { sqrt, atan2, PI } = Math;
 
-const MIN_DISTANCE = 20;  // meters; mark must be beyond this distance to be visible
-const MAX_ALTITUDE_DISTANCE = 50000;  // meters; mark must be within this distance to be plotted with an altitude
+const MIN_DISTANCE = 20;  // meters; landmark must be beyond this distance to be visible
+const MAX_ALTITUDE_DISTANCE = 50000;  // meters; landmark must be within this distance to be plotted with an altitude
 const METERS_PER_FOOT = 0.3048;
 const METERS_PER_MILE = 5280 * METERS_PER_FOOT;
 
 const overlayMarks = (ctx, state) => {
-  const marks = state.marks.filter((m) => m.visible);
+  const landmarks = landmarkStore.getVisible();
 
-  if (!marks.length) {
+  if (!landmarks.length) {
     return;
   }
 
   const { polarToScreen } = createTransformer(ctx, state);
+  const { coords } = state.location;
 
   ctx.save();
 
@@ -26,8 +28,7 @@ const overlayMarks = (ctx, state) => {
   ctx.textBaseline = 'bottom';
   ctx.shadowColor = '#000000';
 
-  marks.forEach((m) => {
-    const { coords } = state.location;
+  landmarks.forEach((m) => {
     let { distance, azimuth } = distanceAzimuth(coords, m);
 
     if (distance && distance >= MIN_DISTANCE) {
