@@ -1,5 +1,6 @@
 import dom from './dom.js';
 import geomag from './geomag.js';
+import state from './state.js';
 
 const getLocation = () => {
   const promise = new Promise((resolve, reject) => {
@@ -14,7 +15,7 @@ const getLocation = () => {
   return promise;
 }
 
-const initialize = async (state) => {
+const initialize = async () => {
   const permission = await navigator.permissions.query({ name: 'geolocation' });
 
   if (permission.state === 'denied') {

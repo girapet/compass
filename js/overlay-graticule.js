@@ -1,5 +1,6 @@
 import { toRectangular } from './coordinate-conversion.js';
 import createTransformer from './create-transformer.js';
+import state from './state.js';
 
 const graticule = [];
 
@@ -41,8 +42,9 @@ for (let lat = -75; lat <= 75; lat += 15) {
   graticule.push(coordinates);
 }
 
-const overlayGraticule = (ctx, state) => {
-  const { rectangularToScreen } = createTransformer(ctx, state);
+const overlayGraticule = () => {
+  const { canvasContext: ctx } = state;
+  const { rectangularToScreen } = createTransformer();
 
   ctx.save();
 

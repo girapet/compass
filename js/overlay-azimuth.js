@@ -1,6 +1,7 @@
 import { toRectangular } from './coordinate-conversion.js';
 import createTransformer from './create-transformer.js';
 import drawRotatedText from './draw-rotated-text.js';
+import state from './state.js';
 
 const { atan2 } = Math;
 
@@ -22,8 +23,9 @@ for (let lon = 0; lon < 360; lon += 45) {
   baseS45.push(toRectangular([lon, -45]));
 }
 
-const overlayAzimuth = (ctx, state) => {
-  const { rectangularToScreen } = createTransformer(ctx, state);
+const overlayAzimuth = () => {
+  const { canvasContext: ctx } = state;
+  const { rectangularToScreen } = createTransformer();
 
   const horizon = baseHorizon.map(rectangularToScreen);
   const n45 = baseN45.map(rectangularToScreen);

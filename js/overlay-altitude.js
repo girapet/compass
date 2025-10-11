@@ -1,10 +1,12 @@
 import createTransformer from './create-transformer.js';
 import drawRotatedText from './draw-rotated-text.js';
+import state from './state.js';
 
 const { atan2, abs } = Math;
 
-const overlayAltitude = (ctx, state) => {
-  const { polarToScreen, screenToPolar } = createTransformer(ctx, state);
+const overlayAltitude = () => {
+  const { canvasContext: ctx } = state;
+  const { polarToScreen, screenToPolar } = createTransformer();
 
   const [ longitude ] = screenToPolar([ ctx.canvas.width * 0.5, ctx.canvas.height * 0.5 ]);
   const altitude = [];

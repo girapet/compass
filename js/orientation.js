@@ -1,11 +1,12 @@
 import { deg, rev } from './angle.js';
 import matrix from './3d-rotation-matrix.js';
 import dom from './dom.js';
+import state from './state.js';
 
 const { atan2, abs, sign, asin } = Math;
 const HALF_PI = Math.PI * 0.5;
 
-const initialize = (state) => {
+const initialize = () => {
   if (!AbsoluteOrientationSensor) {
     return 'Orientation sensor is not supported on this device';
   }

@@ -1,9 +1,10 @@
 import { toRectangular, toPolar } from './coordinate-conversion.js';
 import projection from './stereographic-projection.js';
 import matrix from './3d-rotation-matrix.js';
+import state from './state.js';
 
-const createTransformer = (ctx, state) => {
-  const { rotationMatrix, scale } = state;
+const createTransformer = () => {
+  const { scale, rotationMatrix, canvasContext: ctx } = state;
 
   const xOffset = ctx.canvas.clientWidth * 0.5;
   const yOffset = ctx.canvas.clientHeight * 0.5;

@@ -8,8 +8,6 @@ import wakeLock from './wake-lock.js';
 import landmarkManager from './landmark-manager.js';
 
 (async () => {
-  const state = { scale: 1500 };
-
   const $init = dom.find('#init')[0];
   $init.style.setProperty('display', 'block');  
 
@@ -28,7 +26,7 @@ import landmarkManager from './landmark-manager.js';
   
   $init.innerHTML = 'Getting device location, please wait ...';
 
-  error = await location.initialize(state);
+  error = await location.initialize();
 
   if (error) {
     $init.innerHTML = error;
@@ -37,7 +35,7 @@ import landmarkManager from './landmark-manager.js';
 
   // initialize the orientation sensor
 
-  error = orientation.initialize(state);
+  error = orientation.initialize();
 
   if (error) {
     $init.innerHTML = error;
@@ -46,13 +44,13 @@ import landmarkManager from './landmark-manager.js';
 
   // initialize the landmark manager
 
-  await landmarkManager.initialize(state);
+  landmarkManager.initialize();
 
   // initialize the overlays
 
   $init.style.setProperty('display', 'none');
 
-  overlay.initialize(state);
+  overlay.initialize();
   
   // only in development: keep screen active while in use
 
