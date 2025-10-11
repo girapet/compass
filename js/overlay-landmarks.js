@@ -72,7 +72,7 @@ const overlayMarks = () => {
       ctx.fillStyle = '#ffff80';
       ctx.shadowBlur = 5;
       ctx.fillText(lm.name, 20, -20);
-      ctx.fillText(measure, 20, 6);
+      ctx.fillText(measure, 20, 10);
 
       ctx.restore();
     }
